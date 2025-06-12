@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.21",
+    "bootstrap": "^5.3.6",
     "pdfjs-dist": "^3.11.174",
     "postcss": "^8.5.5",
     "react": "^19.1.0",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.10"
   },
