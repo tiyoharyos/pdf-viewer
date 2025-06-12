@@ -81,13 +81,7 @@ function PDFViewer() {
       pageContainer.className = 'page-container position-relative';
       pageContainer.appendChild(canvas);
 
-      // Add page number label
-      const pageLabel = document.createElement('div');
-      pageLabel.className = 'position-absolute top-0 start-0 bg-primary text-white px-2 py-1 small';
-      pageLabel.style.zIndex = '10';
-      pageLabel.textContent = `Hal. ${pageNum}`;
-      pageContainer.appendChild(pageLabel);
-
+   
       container.appendChild(pageContainer);
 
       // Render page
@@ -280,75 +274,41 @@ function PDFViewer() {
   );
 
   return (
-    <div className={`py-4 px-3 ${isDarkMode ? "bg-dark text-light" : "bg-light text-dark"}`} style={{ minHeight: "100vh" }}>
+    <div style={{ minHeight: "100vh" }}>
       <div className="container-fluid">
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <h4 className="mb-0">PDF Viewer</h4>
-          <button onClick={toggleDarkMode} className="btn btn-outline-secondary">
-            {isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
-          </button>
-        </div>
+      
 
-        {/* Zoom and Rotate Controls */}
-        <div className="d-flex flex-wrap justify-content-center gap-2 mb-3">
-          <button onClick={zoomOut} className="btn btn-secondary" title="Zoom Out">
-            🔍− Zoom Out
-          </button>
-          <button onClick={resetZoom} className="btn btn-secondary" title="Reset Zoom & Rotation">
-            🎯 Reset ({Math.round(scale * 100)}%, {rotation}°)
-          </button>
-          <button onClick={zoomIn} className="btn btn-secondary" title="Zoom In">
-            🔍+ Zoom In
-          </button>
-          <button onClick={rotateLeft} className="btn btn-warning" title="Rotate Left">
-            ⟲ Putar Kiri
-          </button>
-          <button onClick={rotateRight} className="btn btn-warning" title="Rotate Right">
-            ⟳ Putar Kanan
-          </button>
-        </div>
+<div className="text-center mb-4">
+  <div className="d-flex flex-wrap justify-content-center gap-2 mb-3">
+    <button onClick={zoomOut} className="btn btn-secondary">🔍− Zoom Out</button>
+    <button onClick={resetZoom} className="btn btn-secondary">🎯 Reset ({Math.round(scale * 100)}%, {rotation}°)</button>
+    <button onClick={zoomIn} className="btn btn-secondary">🔍+ Zoom In</button>
+    <button onClick={rotateLeft} className="btn btn-warning">⟲ Putar Kiri</button>
+    <button onClick={rotateRight} className="btn btn-warning">⟳ Putar Kanan</button>
+  </div>
 
-        {/* Enhanced Search Bar */}
-        <div className="row g-2 align-items-center mb-4">
-          <div className="col-md-6">
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSearchSubmit(e)}
-              placeholder="Cari teks dalam PDF..."
-              className="form-control"
-            />
-          </div>
-          <div className="col-md-2">
-            <button onClick={handleSearchSubmit} className="btn btn-success w-100" disabled={isSearching}>
-              {isSearching ? "⏳" : "🔍"} Cari
-            </button>
-          </div>
-          <div className="col-md-4">
-            {searchResults.length > 0 && (
-              <div className="d-flex align-items-center gap-2">
-                <small className="text-muted">
-                  {currentMatch}/{searchResults.length} hasil
-                </small>
-                <button 
-                  onClick={() => navigateMatch(-1)} 
-                  className="btn btn-sm btn-outline-primary"
-                  disabled={searchResults.length === 0}
-                >
-                  ↑
-                </button>
-                <button 
-                  onClick={() => navigateMatch(1)} 
-                  className="btn btn-sm btn-outline-primary"
-                  disabled={searchResults.length === 0}
-                >
-                  ↓
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
+  <form onSubmit={handleSearchSubmit} className="d-flex flex-wrap justify-content-center gap-2 align-items-center">
+    <input
+      type="text"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      placeholder="Cari teks dalam PDF..."
+      className="form-control"
+      style={{ maxWidth: "300px" }}
+    />
+    <button type="submit" className="btn btn-success" disabled={isSearching}>
+      {isSearching ? "⏳" : "🔍"} Cari
+    </button>
+    {searchResults.length > 0 && (
+      <div className="d-flex align-items-center gap-2">
+        <small className="text-muted">{currentMatch}/{searchResults.length} hasil</small>
+        <button type="button" onClick={() => navigateMatch(-1)} className="btn btn-sm btn-outline-primary">↑</button>
+        <button type="button" onClick={() => navigateMatch(1)} className="btn btn-sm btn-outline-primary">↓</button>
+      </div>
+    )}
+  </form>
+</div>
+
 
         {/* PDF Viewer Container */}
         <div
@@ -364,12 +324,7 @@ function PDFViewer() {
         </div>
 
         {/* Info */}
-        <div className="text-center mt-3">
-          <small className="text-muted">
-            {pdfInstance && `Total ${pdfInstance.numPages} halaman`}
-            {searchResults.length > 0 && ` • ${searchResults.length} hasil pencarian ditemukan`}
-          </small>
-        </div>
+        
       </div>
     </div>
   );
