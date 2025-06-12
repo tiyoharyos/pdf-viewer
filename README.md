@@ -1,12 +1,89 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📄 PDF Viewer
 
-Currently, two official plugins are available:
+Aplikasi React sederhana untuk menampilkan dan mencari teks dalam file PDF. Dilengkapi dengan fitur:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 Pencarian teks
+- 🔁 Rotasi halaman
+- 🔎 Zoom in / out
+- 🌓 Dark mode
+- 🎯 Navigasi hasil pencarian
 
-## Expanding the ESLint configuration
+--------------------------------------------------
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🚀 Cara Menjalankan Proyek
+
+1. Clone repositori ini:
+
+   git clone <https://github.com/tiyoharyos/pdf-viewer.git>
+   
+   cd pdf-viewer
+
+2. Install dependencies:
+
+   npm install
+
+3. Jalankan proyek di development mode:
+
+   npm run dev
+
+4. Build untuk produksi:
+
+   npm run build
+
+5. Preview hasil build:
+
+   npm run preview
+
+--------------------------------------------------
+
+🏗️ Arsitektur Proyek
+
+pdf-viewer/
+├── public/
+├── src/
+│   ├── components/
+│   │   └── PDFViewer.jsx      # Komponen utama viewer PDF
+│   ├── App.jsx                # Mengatur dark mode dan layout utama
+│   └── main.jsx               # Entry point React
+├── package.json
+└── vite.config.js
+
+Penjelasan:
+
+- PDFViewer.jsx  
+  Berisi logika utama untuk me-load PDF menggunakan PDF.js, menampilkan halaman, menangani zoom, rotasi, dark mode, dan pencarian.
+
+- App.jsx  
+  Mengatur tema global (light/dark mode) dan menyisipkan PDFViewer.
+
+- main.jsx  
+  Entry point aplikasi React.
+
+- vite.config.js  
+  Konfigurasi untuk bundler Vite.
+
+--------------------------------------------------
+
+🧩 Dependencies
+
+Dependencies Utama:
+
+- react, react-dom: Library utama untuk membangun UI.
+- pdfjs-dist: Menampilkan dan membaca isi PDF.
+- bootstrap, react-bootstrap: Komponen UI cepat berbasis Bootstrap.
+- tailwindcss: Utility-first CSS framework untuk styling.
+- lucide-react: Ikon SVG modern berbasis React.
+
+Dev Dependencies:
+
+- vite: Bundler cepat untuk pengembangan React.
+- @vitejs/plugin-react: Plugin Vite untuk React.
+- eslint, @eslint/js: Menjaga kualitas kode.
+- eslint-plugin-react-hooks: Menjaga konsistensi penggunaan React Hooks.
+- eslint-plugin-react-refresh: Hot module replacement saat development.
+- @types/react, @types/react-dom: Mendukung IntelliSense dan type checking.
+
+--------------------------------------------------
+
+
